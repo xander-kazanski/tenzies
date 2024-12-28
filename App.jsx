@@ -9,14 +9,28 @@ export default function App() {
     const [tenzies, setTenzies] = React.useState(false)
     
     React.useEffect(() => {
-        const allHeld = dice.every(die => die.isHeld)
-        const firstValue = dice[0].value
-        const allSameValue = dice.every(die => die.value === firstValue)
-        if (allHeld && allSameValue) {
-            setTenzies(true)
-            console.log("You won!")
-        }
-    }, [dice])
+      let allHeld = true;
+      let allSameValue = true;
+      const firstValue = dice[0].value;
+  
+      for (let i = 0; i < dice.length; i++) {
+          if (!dice[i].isHeld) {
+              allHeld = false;
+          }
+          if (dice[i].value !== firstValue) {
+              allSameValue = false;
+          }
+          if (!allHeld && !allSameValue) break; // Exit early if condition is false
+      }
+  
+      if (allHeld && allSameValue) {
+          setTenzies(true);
+          console.log("You won!");
+      }
+  }, [dice]);
+  
+
+    
 
     function generateNewDie() {
         return {
@@ -43,12 +57,19 @@ export default function App() {
         if (tenzies) {
             setDice(allNewDice())
             setTenzies(false)
+            return
         }
-        setDice(oldDice => oldDice.map(die => {
-            return die.isHeld ? 
-                die :
-                generateNewDie()
-        }))
+
+        setDice(oldDice => {
+          const newDice = [...oldDice];
+          for (let i = 0; i < newDice.length; i++) {
+            if (!newDice[i].isHeld) {
+              newDice[i] = generateNewDie()
+            }
+          }
+          return newDice;
+        })
+
     }
     
     function holdDice(id) {

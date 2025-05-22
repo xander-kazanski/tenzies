@@ -1,5 +1,5 @@
 {
-  "name": "Scrim-s01uaju",
+  "name": "scrim-s01uaju",
   "description": "https://scrimba.com/s01uaju/s0ufv6ovk0/head",
   "scripts": {
     "start": "vite",
@@ -8,13 +8,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "nanoid": "3.1.28",
-    "react-confetti": "6.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "nanoid": "^3.1.28",
+    "react-confetti": "^6.1.0",
     "vite": "latest"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.3"
-  }
+  },
+  "version": "1.0.0",
+  "main": "vite.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
